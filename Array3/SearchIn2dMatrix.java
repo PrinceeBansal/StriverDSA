@@ -18,7 +18,7 @@ public class SearchIn2dMatrix {
     }
 	
 	
-	//Optimal
+	//Better - time 0(m+n)
 	public boolean searchMatrix2(int[][] matrix, int target) {
 		int i = 0;
 		for(; i < matrix.length; i++) {
@@ -33,6 +33,33 @@ public class SearchIn2dMatrix {
 			if(matrix[i][j]==target) {
 				return true;
 			}
+		}
+		
+		return false;
+	}
+	
+	
+	//optimal - time 0(log(m*n))
+	public boolean searchMatrix3(int[][] matrix, int target) {
+		int m = matrix.length;
+		int n = matrix[0].length;
+		int start = 0;
+		int end = (m*n)-1;
+		
+		while(start<=end) {
+			
+			int mid = (start+end)/2;  //this line creating problem when input is [[1,1]], index out of bound
+			
+			if(matrix[mid/m][mid%m]==target) {
+				return true;
+			}
+			else if(matrix[mid/m][mid%m]>target) {
+				end = mid-1;
+			}
+			else if(matrix[mid/m][mid%m]<target) {
+				start = mid +1;
+			}
+			
 		}
 		
 		return false;
