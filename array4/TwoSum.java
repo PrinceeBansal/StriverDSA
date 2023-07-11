@@ -70,7 +70,32 @@ public class TwoSum {
 	 
 	 
 	 
-	 //Better time 0(n) space 0(1)
+	  
+	 //Better time 0(n) + (nlogn) space 0(1)
+	 //can't use this 2 pointer approach for this variant of 2 sum problem since indexes of element will
+	 //change on sorting and we need to return the indexes so hashing is the best approach for this varianti 
+	 public int[] twoSum3(int[] nums, int target) {
+		 Arrays.sort(nums);
+		 int[] ans = new int[2];
+		 int left = 0;
+		 int right = nums.length-1;
+		 
+		 while(left < right) {
+			 if(nums[left]+nums[right] > target) {
+				 right--;
+			 }
+			 else if(nums[left]+nums[right] < target) {
+				 left++;
+			 }
+			 else {
+				 ans[0] = left;
+				 ans[1] = right;
+				 return ans;
+			 }
+		 }
+		 
+		 return ans;
+	 }
 	 
 
 	public static void main(String[] args) {
