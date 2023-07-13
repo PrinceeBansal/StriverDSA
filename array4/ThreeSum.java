@@ -27,6 +27,50 @@ public class ThreeSum {
 		return ans;
 	}
 
+
+	
+	//optimal
+	//target = 0;
+	public static ArrayList<ArrayList<Integer>> threeSum(int[] nums, int n) {
+		ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
+		Arrays.sort(nums);
+		
+		for(int i = 0; i < n-2; i++) {
+			
+			if(i==0 || (i>0 && nums[i] != nums[i-1]) ){
+				int lo = i+1;
+				int hi = n-1;
+				int needed = 0 - nums[i];
+				
+				while(lo < hi) {
+					if(nums[lo] + nums[hi] > needed) {
+						hi--;
+					}
+					else if(nums[lo] + nums[hi] < needed) {
+						lo++;
+					}
+					else {
+						ArrayList<Integer> temp = new ArrayList<>();
+						temp.add(nums[i]);
+						temp.add(nums[lo]);
+						temp.add(nums[hi]);
+						ans.add(temp);
+						
+						while(lo<hi && nums[lo]==nums[lo+1]) {lo++;}
+						while(lo<hi && nums[hi]==nums[hi-1]) {hi--;}
+						
+						lo++;
+						hi--;
+					}
+				}
+			}
+			
+		}
+		
+		return ans;
+	}
+
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
