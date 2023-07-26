@@ -46,8 +46,79 @@ public class IntersectionOf2LL {
 	}
 	
 	
-	//Difference in length
+	//Difference in length, time 0(N)  space const longer code
+	public int DifferenceLength(ListNode headA, ListNode headB) {
+		int length1 = 0;
+		int length2 = 0;
+		
+		ListNode temp1 = headA;
+		while(temp1!=null) {
+			length1++;
+			temp1 = temp1.next;
+		}
+		
+		ListNode temp2 = headB;
+		while(temp2!=null) {
+			length2++;
+			temp2 = temp2.next;
+		}
+		
+		return length1-length2;  //if difference +ve ll1>ll2
+	}
 	
+	public ListNode getIntersectionNode3(ListNode headA, ListNode headB) {
+		int difference = DifferenceLength(headA, headB);
+		ListNode dummy1 = headA;
+		ListNode dummy2 = headB;
+		
+		if(difference>0) {
+			while(difference!=0) {
+				dummy1 = dummy1.next;
+				difference--;
+			}
+		}
+		else {
+			while(difference!=0) {
+				dummy2 = dummy2.next;
+				difference++;
+			}
+		}
+		
+		while(dummy1!=null && dummy2!=null) {
+			if(dummy1==dummy2) {
+				return dummy1;
+			}
+			dummy1 = dummy1.next;
+			dummy2 = dummy2.next;
+		}
+		
+		return null;
+	}
+	
+	
+	
+	//shorter method shorter code same complexities as above
+	public ListNode getIntersectionNode4(ListNode headA, ListNode headB) {
+		ListNode d1 = headA;
+		ListNode d2 = headB;
+		
+		while(d1!=d2) {
+			if(d1==null) {
+				d1 = headB;
+			}
+			else {
+				d1 = d1.next;
+			}
+			if(d2==null) {
+				d2 = headA;
+			}
+			else {
+				d2 = d2.next;
+			}
+		}
+		
+		return d1;
+	}	
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
