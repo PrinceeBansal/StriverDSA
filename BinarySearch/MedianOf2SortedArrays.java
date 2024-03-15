@@ -2,7 +2,7 @@ package binarySearch;
 
 public class MedianOf2SortedArrays {
 	
-	//Brute force
+	//Brute force time - 0(m+n)  space - 0(m+n)
 	public double findMedianSortedArrays(int[] nums1, int[] nums2) {
 		double median = Integer.MIN_VALUE;
 		int i=0 , j=0, k=0;     
